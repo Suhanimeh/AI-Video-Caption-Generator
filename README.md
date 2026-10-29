@@ -1,358 +1,294 @@
-AI Video Caption Generator
+# AI Video Caption Generator
 
-AI-powered video captioning using BLIP, OpenCV, and FastAPI.
+**AI-powered video captioning using BLIP, OpenCV, and FastAPI.**
 
-The AI Video Caption Generator is a web application that analyzes video frames and generates natural-language descriptions using the BLIP image-captioning model. It extracts representative frames from an uploaded video, processes them with a pretrained vision-language model, and returns captions through a FastAPI backend.
+The AI Video Caption Generator is a web application that generates natural-language descriptions of video content using the pretrained BLIP image-captioning model. It extracts selected frames from uploaded videos, processes them using computer vision techniques, and returns generated captions through a FastAPI backend.
 
-Live Demo
+## Live Demo
 
-Frontend: https://glistening-bavarois-f92dd1.netlify.app/
+- **Frontend:** [Try the AI Video Caption Generator](https://glistening-bavarois-f92dd1.netlify.app/)
+- **Backend API:** [View the Backend Service](https://video-captioning-app-pgo9.onrender.com)
 
-Backend API: https://video-captioning-app-pgo9.onrender.com
+## Overview
 
-Overview
+Videos contain large amounts of visual information that can be time-consuming to review manually. This project explores how computer vision and pretrained vision-language models can help describe visual content through automated caption generation.
 
-Videos contain large amounts of visual information that can be difficult to review manually. This project explores how computer vision and pretrained AI models can help summarize visual content by generating descriptive captions from selected video frames.
+The application combines a browser-based interface with a Python backend. Users upload a supported video file, OpenCV extracts selected frames, and BLIP generates natural-language descriptions of those frames.
 
-The application combines a browser-based interface with a Python backend. Users upload a supported video, the backend extracts frames using OpenCV, and BLIP generates descriptions of the selected images.
+The project demonstrates the integration of video processing, machine learning inference, REST API development, and frontend technologies in a practical AI application.
 
-The project demonstrates an applied workflow involving video processing, machine learning inference, API development, and frontend integration.
+## Project Objectives
 
-Project Objectives
+- Explore how pretrained vision-language models generate descriptions of visual content.
+- Extract representative frames from videos using OpenCV.
+- Integrate an AI model into a web application through a REST API.
+- Present generated captions and processing information through a user-friendly interface.
+- Understand practical challenges involving model loading, inference time, and video compatibility.
 
-Explore how pretrained vision-language models can describe visual content.
+## Features
 
-Extract representative frames from video files using OpenCV.
+- **Video Upload:** Supports video uploads in `.mp4` and `.avi` formats, subject to backend validation and codec compatibility.
+- **Automatic Frame Extraction:** Uses OpenCV to extract frames for caption generation.
+- **AI-Powered Captioning:** Uses the pretrained BLIP model to generate descriptions of selected frames.
+- **Confidence Information:** Displays a confidence score if supported by the application's implemented scoring method. This score should not be interpreted as a guarantee of caption accuracy.
+- **Processing Time:** Reports processing time when supported by the application.
+- **Responsive Interface:** Uses HTML, Vanilla JavaScript, and Tailwind CSS to provide a browser-based user experience.
+- **REST API Integration:** Uses FastAPI to connect the frontend with the video-processing and caption-generation pipeline.
+- **Cross-Origin Resource Sharing:** Configures CORS to support communication between the separately hosted frontend and backend.
 
-Connect an AI model to a web application through a REST API.
+## Technology Stack
 
-Present generated captions and processing information in a user-friendly interface.
+| Component | Technologies |
+|---|---|
+| Backend API | Python, FastAPI, Uvicorn |
+| AI Model | Salesforce BLIP, Hugging Face Transformers |
+| Video Processing | OpenCV |
+| Image Processing | Pillow |
+| Machine Learning | PyTorch, NumPy |
+| Frontend | HTML, Vanilla JavaScript, Tailwind CSS |
+| Deployment | Netlify, Render |
 
-Understand practical considerations such as model loading, inference time, and video compatibility.
+*Ensure that every listed technology is included in the repository's actual implementation and dependencies.*
 
-Features
+## How It Works
 
-Video Upload: Accepts supported .mp4 and .avi video files.
+```text
+       Video Upload
+            |
+            v
+     Frontend Interface
+            |
+            v
+       FastAPI Request
+            |
+            v
+     Video Processing
+          OpenCV
+            |
+            v
+      Frame Extraction
+            |
+            v
+      BLIP Caption Model
+            |
+            v
+    Generated Captions
+            |
+            v
+      Results Displayed
+       in the Browser
+```
 
-Frame Extraction: Uses OpenCV to extract frames for analysis.
+### Processing Workflow
 
-AI Caption Generation: Uses the pretrained BLIP model to generate natural-language image descriptions.
+1. **Video Upload:** The user selects a supported video file through the frontend.
+2. **API Request:** The frontend sends the uploaded video to the FastAPI caption-generation endpoint.
+3. **Frame Extraction:** OpenCV reads the video and extracts frames using the sampling or scene-selection logic implemented in the backend.
+4. **Caption Generation:** The extracted frames are processed by the pretrained BLIP model to generate natural-language descriptions.
+5. **Result Display:** The backend returns the generated caption information and any supported processing metrics to the frontend.
 
-Confidence Information: Displays a confidence score when provided by the application's implemented scoring method. This score should not automatically be interpreted as a measure of factual accuracy.
+**Important:** The generated captions describe selected video frames. They do not necessarily provide a complete summary of every event throughout the video.
 
-Processing Time: Reports the processing time for caption generation.
+## Project Structure
 
-Web Interface: Provides a responsive frontend built with HTML, Vanilla JavaScript, and Tailwind CSS.
-
-REST API: Uses FastAPI to handle requests between the frontend and the caption-generation pipeline.
-
-Cross-Origin Support: Configures CORS to allow communication between the separately hosted frontend and backend.
-
-Technology Stack
-
-Component
-
-Technologies
-
-Backend API
-
-Python, FastAPI, Uvicorn
-
-AI Model
-
-Salesforce BLIP, Hugging Face Transformers
-
-Video Processing
-
-OpenCV
-
-Image Processing
-
-Pillow
-
-Machine Learning
-
-PyTorch, NumPy
-
-Frontend
-
-HTML, Vanilla JavaScript, Tailwind CSS
-
-Deployment
-
-Netlify, Render
-
-The table describes the technologies listed for the project. Keep each dependency in the final README only if it is actually used in your codebase.
-
-How It Works
-
-User Uploads a Video
-         |
-         v
-   Frontend Interface
-         |
-         v
-     FastAPI Request
-         |
-         v
-    Video Processing
-        OpenCV
-         |
-         v
-   Key-Frame Extraction
-         |
-         v
-    BLIP Caption Model
-         |
-         v
-  Generated Frame Captions
-         |
-         v
-   Results in the Browser
-
-Processing Workflow
-
-Upload: The user selects a supported video file through the frontend.
-
-API Request: The frontend sends the video to the FastAPI caption-generation endpoint.
-
-Frame Extraction: OpenCV reads the video and extracts frames according to the implemented sampling or scene-selection strategy.
-
-Caption Generation: The extracted frames are passed to the pretrained BLIP model, which generates descriptions of their visual content.
-
-Result Display: The application returns the generated caption information and any supported processing metrics to the frontend.
-
-The output describes the selected frames rather than necessarily providing a complete, continuous summary of the entire video.
-
-Project Structure
-
+```text
 video-caption-app/
 ├── backend/
 │   ├── main.py              # FastAPI application and API endpoint
 │   ├── model.py             # BLIP model loading and caption generation
-│   ├── utils.py             # Frame extraction and scene processing
+│   ├── utils.py             # Frame extraction and video-processing utilities
 │   └── requirements.txt     # Python dependencies
 ├── frontend/
-│   └── index.html           # Web interface and JavaScript logic
+│   └── index.html           # Frontend interface and JavaScript logic
 └── README.md                # Project documentation
+```
 
-Run Locally
+## Getting Started
 
-Prerequisites
+### Prerequisites
 
-Python 3.10 or a compatible version supported by your dependencies
+Before running the application locally, ensure you have:
 
-pip
+- Python 3.10 or another version compatible with your dependencies.
+- pip for installing Python packages.
+- Git for cloning the repository.
+- A supported video file for testing.
+- Sufficient memory and storage for PyTorch and the pretrained BLIP model.
 
-Git
+### 1. Clone the Repository
 
-A compatible video file
+Replace `YOUR_USERNAME` with your GitHub username and update the repository name if necessary.
 
-Sufficient memory and storage for PyTorch and the pretrained BLIP model
-
-1. Clone the Repository
-
-Replace YOUR_USERNAME with your GitHub username and use the actual repository name if it differs.
-
-git clone https://github.com/YOUR_USERNAME/video-caption-app.git
+```bash
+git clone https://github.com/SuhaniMeh/video-caption-app.git
 cd video-caption-app
+```
 
-2. Set Up the Backend
+### 2. Set Up the Backend
 
+Navigate to the backend directory and create a virtual environment.
+
+```bash
 cd backend
 python -m venv venv
+```
 
 Activate the virtual environment.
 
-Windows:
+**Windows:**
 
+```powershell
 venv\Scripts\activate
+```
 
-macOS/Linux:
+**macOS/Linux:**
 
+```bash
 source venv/bin/activate
+```
 
-Install the dependencies:
+Install the required dependencies.
 
+```bash
 pip install -r requirements.txt
+```
 
-Start the API server:
+Start the FastAPI development server.
 
+```bash
 uvicorn main:app --reload
+```
 
-The backend should now be available at:
+The backend should now be accessible at:
 
-http://localhost:8000
+- **API:** `http://localhost:8000`
+- **Interactive API documentation:** `http://localhost:8000/docs`
 
-FastAPI's interactive API documentation is typically available at:
+The first model initialization may take longer because the pretrained model may need to be downloaded and loaded into memory.
 
-http://localhost:8000/docs
+### 3. Configure and Open the Frontend
 
-3. Start the Frontend
+Open `frontend/index.html` in your browser.
 
-Open frontend/index.html in your browser.
+Ensure the frontend's API URL points to the local backend:
 
-Ensure the API_URL value in the frontend points to the local backend endpoint:
-
+```javascript
 const API_URL = "http://localhost:8000/generate-caption";
+```
 
-The exact variable name and endpoint should match your implementation.
+The variable name and endpoint must match the implementation in your `index.html` and `main.py` files.
 
-4. Test the API
+### 4. Test the API
 
-You can test the endpoint using curl:
+You can test the caption-generation endpoint using `curl`:
 
+```bash
 curl -X POST http://localhost:8000/generate-caption \
   -F "file=@your_video.mp4"
+```
 
-Replace your_video.mp4 with the path to an actual video file. The request format assumes the endpoint accepts an uploaded file through a multipart form field named file.
+Replace `your_video.mp4` with the path to your test video. This command assumes the endpoint accepts an uploaded file through a multipart form field named `file`.
 
-Deployment
+## Deployment
 
-The project uses separate hosting services for its frontend and backend.
+The application uses separate hosting services for the frontend and backend.
 
-Backend Deployment — Render
+### Backend Deployment with Render
 
-Push the backend code to a GitHub repository.
+1. Push the backend code to a GitHub repository.
+2. Open [Render](https://render.com/) and create a new Web Service.
+3. Connect the repository containing the backend.
+4. Configure the backend root directory if the repository contains multiple application folders.
+5. Set the build command:
 
-Create a new Web Service in Render.
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Connect the repository and configure the backend's root directory if needed.
+6. Set the start command:
 
-Set the build command to:
+   ```bash
+   uvicorn main:app --host 0.0.0.0 --port $PORT
+   ```
 
-pip install -r requirements.txt
+7. Configure the Python version and any required environment variables.
+8. Deploy the service and verify that the API is accessible.
 
-Set the start command to:
+**Deployment consideration:** PyTorch and BLIP can require substantial memory, storage, and startup time. Confirm that the hosting plan supports the model's resource requirements and expected inference workload.
 
-uvicorn main:app --host 0.0.0.0 --port $PORT
+### Frontend Deployment with Netlify
 
-Configure the Python version and any required environment variables.
+1. Update the frontend's API URL to point to the deployed backend.
+2. Open [Netlify](https://www.netlify.com/).
+3. Deploy the `frontend/` directory containing `index.html`.
+4. Upload a supported video and verify that captions are returned successfully.
 
-Deploy the service and verify that the API responds.
+For production deployments, configure CORS to allow only trusted frontend origins rather than permitting requests from every origin.
 
-Deployment consideration: PyTorch and the BLIP model can require substantial memory, storage, and startup time. Confirm that the selected hosting plan supports the application's actual resource requirements.
+## Common Issues and Troubleshooting
 
-Frontend Deployment — Netlify
+| Issue | Possible Solution |
+|---|---|
+| CORS error | Check the backend CORS configuration and ensure the deployed frontend origin is permitted. |
+| Slow dependency installation | PyTorch is a large dependency. Consider a compatible CPU-only installation if GPU support is unnecessary. |
+| Slow first request | The pretrained model may need to download and initialize before generating captions. |
+| Unsupported video | Verify the file format, codec compatibility, and whether OpenCV can read the file. |
+| No frames extracted | Check the uploaded file and review the frame-extraction logic, video duration, and frame rate. |
+| API timeout or deployment failure | Review server logs, memory usage, model initialization, and hosting resource limits. |
+| Frontend cannot reach the backend | Verify the API URL, endpoint path, CORS settings, and backend availability. |
 
-Update the frontend's API_URL to the deployed backend endpoint.
+## Potential Applications
 
-Open Netlify.
+- **Accessibility Support:** Generate draft visual descriptions that can help users understand video content.
+- **Media Organization:** Create descriptive metadata to support video cataloguing and indexing.
+- **Content Management:** Assist in preparing initial descriptions for video assets.
+- **Video Analysis Workflows:** Use frame-level captions as an initial step in a broader computer vision pipeline.
+- **AI Research and Experimentation:** Explore the practical use of pretrained vision-language models for visual understanding.
 
-Deploy the frontend/ directory containing index.html.
+These are potential applications rather than validated outcomes of the project. Generated descriptions should be reviewed before being used in accessibility-critical or other high-stakes settings.
 
-Test the live application by uploading a supported video.
+## Limitations and Future Improvements
 
-For production use, configure CORS to allow only the frontend origins you trust instead of allowing every origin.
+### Current Limitations
 
-Common Issues
+- Selected frames may not capture every important event in a video.
+- BLIP generates image descriptions and does not inherently understand the complete temporal sequence of a video.
+- Generated captions may omit details or incorrectly describe visual content.
+- Processing time depends on video duration, frame selection, hardware, and model initialization.
+- A confidence score does not necessarily indicate whether a caption is factually correct.
+- Large video files may require additional validation, resource limits, and processing safeguards.
 
-Issue
+### Future Enhancements
 
-Possible Solution
+- Introduce configurable frame-sampling intervals.
+- Combine captions from multiple frames into a concise video-level summary.
+- Evaluate caption quality using reference captions, text-based metrics, and human review.
+- Add configurable file-size and video-duration limits.
+- Improve error handling, loading indicators, and API response validation.
+- Introduce asynchronous processing for longer videos.
+- Explore temporal video models for better understanding of actions and events.
 
-CORS error
+## Skills Demonstrated
 
-Check the backend CORS configuration and confirm that the deployed frontend origin is allowed.
+- Python application development
+- Computer vision and video-frame processing
+- Pretrained vision-language model integration
+- Machine learning inference using PyTorch
+- REST API development with FastAPI
+- Frontend and backend integration
+- Application deployment and troubleshooting
+- Technical documentation and communication
 
-Slow dependency installation
+## Author
 
-PyTorch is a large dependency. Use a compatible CPU-only installation when GPU support is unnecessary.
+**Suhani Mehta**
 
-Slow first request
+- **GitHub:** [Suhanimeh](https://github.com/Suhanimeh)
+- **Live Frontend:** [AI Video Caption Generator](https://glistening-bavarois-f92dd1.netlify.app/)
+- **Backend API:** [FastAPI Backend](https://video-captioning-app-pgo9.onrender.com)
 
-The model may need to download and load before the first prediction.
+## License
 
-Unsupported video
+This project is intended to be distributed under the MIT License. See the [`LICENSE`](LICENSE) file for the complete terms.
 
-Check the file format, video codec, and whether OpenCV can read the file.
-
-No frames extracted
-
-Verify that the uploaded file is readable and that the extraction logic can process its duration and frame rate.
-
-API timeout or deployment failure
-
-Review server logs, resource limits, model-loading time, and the hosting plan's constraints.
-
-Frontend cannot reach the backend
-
-Verify the deployed API URL, endpoint path, and network accessibility.
-
-Potential Applications
-
-Accessibility support: Generate draft visual descriptions that may help users understand video content.
-
-Media organization: Produce descriptive metadata to support video cataloguing and indexing.
-
-Content management: Assist with creating initial descriptions for video assets.
-
-Video analysis workflows: Use frame-level captions as an initial step in a broader computer vision pipeline.
-
-Research and experimentation: Explore the use of pretrained vision-language models for visual understanding.
-
-These are potential applications rather than validated outcomes of this project. Generated captions should be reviewed before being used in accessibility-critical or high-stakes settings.
-
-Limitations and Future Improvements
-
-Current Limitations
-
-Captions describe selected frames and may miss important events occurring between them.
-
-BLIP generates image descriptions; it does not inherently understand the full temporal sequence of a video.
-
-Generated captions can omit details or describe visual content incorrectly.
-
-Processing time depends on video duration, frame sampling, hardware, and model-loading overhead.
-
-Confidence scores, if displayed, do not necessarily measure whether a caption is factually correct.
-
-Large videos may require additional validation, resource limits, and processing safeguards.
-
-Possible Future Enhancements
-
-Add configurable frame-sampling intervals.
-
-Combine captions from multiple frames into a concise video-level summary.
-
-Evaluate caption quality against reference captions using suitable text-based metrics and human review.
-
-Add file-size and video-duration limits.
-
-Improve error handling, loading feedback, and API response validation.
-
-Introduce asynchronous processing for longer videos.
-
-Explore temporal video models for better understanding of actions and events.
-
-Skills Demonstrated
-
-Python application development
-
-Computer vision and video-frame processing
-
-Pretrained vision-language model integration
-
-Machine learning inference using PyTorch
-
-REST API development with FastAPI
-
-Frontend and backend integration
-
-Model deployment and troubleshooting
-
-Technical documentation and project communication
-
-Author
-
-Suhani Mehta
-
-GitHub: https://github.com/Suhanimeh
-
-Live Frontend: https://glistening-bavarois-f92dd1.netlify.app/
-
-Backend API: https://video-captioning-app-pgo9.onrender.com
-
-License
-
-This project is intended to be distributed under the MIT License. See the LICENSE file for the full terms.
+*Include this statement only if the repository contains the corresponding MIT `LICENSE` file.*
